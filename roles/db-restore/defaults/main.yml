@@ -1,0 +1,5 @@
+---
+app_root: /app
+db_container_name: db
+db_export_download_dir: /tmp
+docker_compose: docker-compose

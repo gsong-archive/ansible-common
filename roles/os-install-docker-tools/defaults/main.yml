@@ -1,0 +1,10 @@
+---
+cache_valid_time: 3600
+docker_apt_key_id: 58118E89F3A912897C070ADBF76221572C52609D
+docker_apt_keyserver: hkp://ha.pool.sks-keyservers.net:80
+docker_repo: deb https://apt.dockerproject.org/repo ubuntu-xenial main
+docker_tools_deps_pkgs:
+    - apt-transport-https
+    - ca-certificates
+    - dmsetup
+    - python-pip

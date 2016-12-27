@@ -1,0 +1,19 @@
+# Check to see if a reboot is needed after upgrade
+---
+- name: reboot if needed
+  shell: sleep 2 && shutdown -r now
+  args:
+    removes: /var/run/reboot-required
+  async: 1
+  poll: 0
+
+- name: wait a moment
+  pause:
+    seconds: 5
+
+- name: wait for server to start
+  local_action:
+    module: wait_for
+    host: "{{ ansible_default_ipv4.address }}"
+    port: 22
+    state: started

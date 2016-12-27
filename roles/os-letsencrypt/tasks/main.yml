@@ -1,0 +1,38 @@
+# Install letsencrypt SSL cert
+# vars:
+#   - cache_valid_time
+#   - hostnames
+#   - letsencrypt_config_dir
+#   - letsencrypt_email
+#   - letsencrypt_root
+---
+- name: install letsencrypt CLI
+  apt:
+    name: letsencrypt
+    update_cache: yes
+    cache_valid_time: "{{ cache_valid_time }}"
+
+- name: create directory {{ letsencrypt_config_dir }}
+  file:
+    path: "{{ letsencrypt_config_dir }}"
+    state: directory
+
+- name: create the configuration file
+  template:
+    src: cli.ini.j2
+    dest: "{{ letsencrypt_config_dir }}/{{ item }}.ini"
+  with_items: "{{ hostnames }}"
+
+- name: get the certificates
+  command: >
+    letsencrypt certonly -c {{ letsencrypt_config_dir }}/{{ item }}.ini
+  args:
+    creates: "{{ letsencrypt_root }}/live/{{ item }}"
+  with_items: "{{ hostnames }}"
+
+- name: install autorenew cron job
+  cron:
+    name: letsencrypt renew
+    job: letsencrypt renew 2>&1 > /var/tmp/letsencrypt.txt
+    hour: 6,18
+    minute: 43

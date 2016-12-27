@@ -1,0 +1,33 @@
+# Procure a new Linode VM
+# vars:
+#   - linode_datacenter
+#   - linode_distro
+#   - linode_name
+#   - linode_plan
+#   - linode_ssh_pub_key
+---
+- name: procure VM
+  local_action:
+    module: linode
+    name: "{{ linode_name }}"
+    plan: "{{ linode_plan }}"
+    datacenter: "{{ linode_datacenter }}"
+    distribution: "{{ linode_distro }}"
+    ssh_pub_key: "{{ linode_ssh_pub_key }}"
+    wait: yes
+  register: linode
+
+- name: show the registered Linode VM
+  debug: var=linode
+
+- name: add new host to in-memory inventory
+  add_host:
+    hostname: "{{ linode.instance.ipv4 }}"
+    groupname: linode
+
+- name: wait for server to start
+  local_action:
+    module: wait_for
+    host: "{{ linode.instance.ipv4 }}"
+    port: 22
+    state: started

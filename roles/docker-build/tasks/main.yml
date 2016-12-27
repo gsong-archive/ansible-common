@@ -1,0 +1,12 @@
+# Build Docker images
+# vars:
+#   - app_root
+#   - container: specify a specific container to act on
+#   - docker_compose: docker-compose command for this host,
+#     e.g. `docker-compose -f f1.yml -f f2.yml`
+#   - env
+---
+- name: build {{ env }} Docker images
+  command: "{{ docker_compose }} build {{ container }}"
+  args:
+    chdir: "{{ app_root }}"

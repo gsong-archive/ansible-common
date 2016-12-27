@@ -1,0 +1,16 @@
+{% set label = item.split('.')[0] %}
+[uwsgi]
+base = {{ app_root }}
+var = /usr/local/var
+
+chdir = %(base)
+module = lehrhaus_projects.wsgi
+socket = %(var)/run/{{ label }}.sock
+master = true
+vacuum = true
+limit-as = 1024
+max-request = 100
+evil-reload-on-as = 512
+evil-reload-on-rss = 384
+workers = 5
+die-on-term = true

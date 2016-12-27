@@ -1,0 +1,2 @@
+---
+host_line: "{{ ansible_default_ipv4.address }} {{ ' '.join(hostnames) }}"

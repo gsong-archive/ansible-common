@@ -1,0 +1,42 @@
+# Install docker-engine and docker-compose
+# Add users to docker group
+# vars:
+#   - cache_valid_time
+#   - docker_apt_key_id
+#   - docker_apt_keyserver
+#   - docker_repo
+#   - docker_tools_deps_pkgs: apt packages that Docker needs
+---
+- name: install package dependencies
+  apt:
+    name: "{{ docker_tools_deps_pkgs }}"
+    update_cache: yes
+    cache_valid_time: "{{ cache_valid_time }}"
+
+- name: logical volume setup
+  command: dmsetup mknodes
+
+- name: add docker apt key
+  apt_key:
+    keyserver: "{{ docker_apt_keyserver }}"
+    id: "{{ docker_apt_key_id }}"
+
+- name: add docker repo
+  apt_repository:
+    repo: "{{ docker_repo }}"
+
+- name: install docker-engine
+  apt:
+    name: docker-engine
+    update_cache: yes
+    cache_valid_time: "{{ cache_valid_time }}"
+
+- name: start docker service
+  service:
+    name: docker
+    enabled: yes
+    state: started
+
+- name: install docker-compose
+  pip:
+    name: docker-compose

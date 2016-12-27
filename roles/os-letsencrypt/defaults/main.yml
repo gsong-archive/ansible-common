@@ -1,0 +1,4 @@
+---
+cache_valid_time: 3600
+letsencrypt_root: /etc/letsencrypt
+letsencrypt_config_dir: "{{ letsencrypt_root }}/config"
