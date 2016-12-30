@@ -3,6 +3,8 @@
 #   - cache_valid_time
 #   - hostnames
 #   - letsencrypt_config_dir
+#   - letsencrypt_cron_hours
+#   - letsencrypt_cron_minute
 #   - letsencrypt_email
 #   - letsencrypt_root
 ---
@@ -34,5 +36,5 @@
   cron:
     name: letsencrypt renew
     job: letsencrypt renew 2>&1 > /var/tmp/letsencrypt.txt
-    hour: 6,18
-    minute: 43
+    hour: "{{ letsencrypt_cron_hours }}"
+    minute: "{{ letsencrypt_cron_minute }}"

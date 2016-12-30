@@ -2,3 +2,6 @@
 cache_valid_time: 3600
 letsencrypt_root: /etc/letsencrypt
 letsencrypt_config_dir: "{{ letsencrypt_root }}/config"
+letsencrypt_cron_hour: "{{ 11 | random }}"
+letsencrypt_cron_hours: "{{ letsencrypt_cron_hour }},{{ letsencrypt_cron_hour | int + 12 }}"
+letsencrypt_cron_minute: "{{ 59 | random }}"
