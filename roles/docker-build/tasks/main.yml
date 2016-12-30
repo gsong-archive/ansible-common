@@ -7,6 +7,6 @@
 #   - env
 ---
 - name: build {{ env }} Docker images
-  command: "{{ docker_compose }} build {{ container }}"
+  command: "{{ docker_compose }} build --pull {{ container }}"
   args:
     chdir: "{{ app_root }}"
