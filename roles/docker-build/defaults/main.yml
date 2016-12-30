@@ -1,5 +1,4 @@
 ---
 app_root: /app
 container: ''
-docker_compose: docker-compose
 env: staging

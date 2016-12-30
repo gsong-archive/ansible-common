@@ -1,6 +1,7 @@
 # Create the .env file
 # vars:
 #   - app_root
+#   - compose_files
 #   - django_secret_key
 #   - postgres_db
 #   - postgres_password

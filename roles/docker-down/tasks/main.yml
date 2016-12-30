@@ -2,10 +2,9 @@
 # vars:
 #   - app_root
 #   - container: specify a specific container to act on
-#   - docker_compose
 #   - env
 ---
 - name: stop and remove {{ env }} Docker containers
-  command: "{{ docker_compose }} down {{ container }}"
+  command: docker-compose down {{ container }}
   args:
     chdir: "{{ app_root }}"
