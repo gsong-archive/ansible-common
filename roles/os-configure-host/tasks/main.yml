@@ -1,12 +1,12 @@
 # Set up hostname and /etc/hosts
 # vars:
-#   - hostnames
+#   - hostname
 #   - host_line: actual line to insert into `/etc/hosts`,
 #     e.g. `10.0.0.1 myhostname`
 ---
 - name: set hostname
   hostname:
-    name: "{{ hostnames.0 }}"
+    name: "{{ hostname }}"
 
 - name: unset FQDN
   lineinfile:
