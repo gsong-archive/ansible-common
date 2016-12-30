@@ -3,9 +3,12 @@
 #   - app_root
 #   - compose_files
 #   - django_secret_key
+#   - django_settings
+#   - env
 #   - postgres_db
 #   - postgres_password
 #   - postgres_user
+#   - project_name_suffix
 ---
 - name: create the .env file
   template:
