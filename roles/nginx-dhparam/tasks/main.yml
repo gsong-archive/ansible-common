@@ -1,5 +1,6 @@
 # Add nginx available sites configurations
 # vars:
+#   - dhparam_key_size
 #   - letsencrypt_root
 ---
 - name: create directory {{ letsencrypt_root }}
@@ -8,6 +9,6 @@
     state: directory
 
 - name: generate new key exchange
-  command: openssl dhparam -out {{ letsencrypt_root }}/dhparam.pem 4096
+  command: openssl dhparam -out {{ letsencrypt_root }}/dhparam.pem {{ dhparam_key_size }}
   args:
     creates: "{{ letsencrypt_root }}/dhparam.pem"

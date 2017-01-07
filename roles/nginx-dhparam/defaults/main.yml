@@ -1,2 +1,3 @@
 ---
 letsencrypt_root: /etc/letsencrypt
+dhparam_key_size: 4096

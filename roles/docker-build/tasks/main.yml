@@ -1,11 +1,9 @@
 # Build Docker images
 # vars:
 #   - app_root
-#   - container: specify a specific container to act on
-#     e.g. `docker-compose -f f1.yml -f f2.yml`
 #   - env
 ---
 - name: build {{ env }} Docker images
-  command: docker-compose build --pull {{ container }}
+  command: docker-compose build --pull
   args:
     chdir: "{{ app_root }}"
