@@ -1,4 +1,3 @@
 ---
-app_root: /app
-container: ''
-env: staging
+env: production
+host_app_root: /app

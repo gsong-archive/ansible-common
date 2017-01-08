@@ -1,10 +1,10 @@
 # Create the .env file
 # vars:
-#   - app_root
 #   - compose_files
 #   - django_secret_key
 #   - django_settings
 #   - env
+#   - host_app_root
 #   - postgres_db
 #   - postgres_password
 #   - postgres_user
@@ -13,5 +13,5 @@
 - name: create the .env file
   template:
     src: env.j2
-    dest: "{{ app_root }}/.env"
+    dest: "{{ host_app_root }}/.env"
     force: no

@@ -1,19 +1,19 @@
 # Restore the database based on export file
 # vars:
-#   - app_root
 #   - db_container_name
 #   - db_export_download_dir
 #   - db_export_url
+#   - host_app_root
 ---
 - name: start db container
   include_role:
     name: docker-up
   vars:
-    container: "{{ db_container_name }}"
+    containers: "{{ db_container_name }}"
 
 - name: Get PostgreSQL user name
   raw: >
-    cd {{ app_root }} &&
+    cd {{ host_app_root }} &&
     docker-compose exec
     {{ db_container_name }}
     printenv POSTGRES_USER
@@ -23,7 +23,7 @@
 
 - name: Get PostgreSQL db name
   raw: >
-    cd {{ app_root }} &&
+    cd {{ host_app_root }} &&
     docker-compose exec
     {{ db_container_name }}
     printenv POSTGRES_DB
@@ -44,12 +44,12 @@
   include_role:
     name: docker-up
   vars:
-    container: "{{ db_container_name }}"
+    containers: "{{ db_container_name }}"
 
 - name: get id of {{ db_container_name }} container
   command: docker-compose ps -q {{ db_container_name }}
   args:
-    chdir: "{{ app_root }}"
+    chdir: "{{ host_app_root }}"
   register: _db_container_id
 
 - name: copy the export file into the container
@@ -60,7 +60,7 @@
 
 - name: drop the current database
   raw: >
-    cd {{ app_root }} &&
+    cd {{ host_app_root }} &&
     docker-compose exec
     --user {{ postgres_user }}
     {{ db_container_name }}
@@ -68,7 +68,7 @@
 
 - name: create the database
   raw: >
-    cd {{ app_root }} &&
+    cd {{ host_app_root }} &&
     docker-compose exec
     --user {{ postgres_user }}
     {{ db_container_name }}
@@ -76,7 +76,7 @@
 
 - name: restore the database
   raw: >
-    cd {{ app_root }} &&
+    cd {{ host_app_root }} &&
     docker-compose exec
     --user {{ postgres_user }}
     {{ db_container_name }}

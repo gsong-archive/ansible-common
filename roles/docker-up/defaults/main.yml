@@ -1,4 +1,4 @@
 ---
-app_root: /app
-container: ''
-env: staging
+containers: ''  # space separated list of containers to act on
+env: production
+host_app_root: /app

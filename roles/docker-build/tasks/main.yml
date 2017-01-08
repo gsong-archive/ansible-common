@@ -1,9 +1,9 @@
 # Build Docker images
 # vars:
-#   - app_root
 #   - env
+#   - host_app_root
 ---
 - name: build {{ env }} Docker images
   command: docker-compose build --pull
   args:
-    chdir: "{{ app_root }}"
+    chdir: "{{ host_app_root }}"
