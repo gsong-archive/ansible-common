@@ -1,0 +1,7 @@
+# Add ssh access for deployment purposes
+---
+- name: Add ssh access for deployment
+  hosts: all
+  remote_user: "{{ deployment_user | default('deployer') }}"
+  roles:
+    - os-add-ssh-access

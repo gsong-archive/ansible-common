@@ -12,6 +12,7 @@
     shell: /bin/bash
 
 - name: Add authorized_key for {{ deployment_user }}
-  authorized_key:
+  include_role:
+    name: os-add-ssh-access
+  vars:
     user: "{{ deployment_user }}"
-    key: "{{ lookup('file', '{{ ssh_pub_key }}') }}"

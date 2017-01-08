@@ -1,0 +1,9 @@
+# Add ssh access for user
+# vars:
+#   - ssh_pub_key
+#   - user
+---
+- name: Add authorized_key for {{ user }}
+  authorized_key:
+    user: "{{ user }}"
+    key: "{{ lookup('file', '{{ ssh_pub_key }}') }}"
