@@ -1,0 +1,7 @@
+# Create docker group
+# vars:
+#   - docker_group
+---
+- name: add docker group
+  group:
+    name: "{{ docker_group }}"

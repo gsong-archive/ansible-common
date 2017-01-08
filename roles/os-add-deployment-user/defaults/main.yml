@@ -1,0 +1,4 @@
+---
+deployment_groups: docker
+deployment_user: deployer
+ssh_pub_key: ~/.ssh/id_rsa.pub
