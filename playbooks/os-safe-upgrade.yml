@@ -1,0 +1,7 @@
+# Setup a new VM with app
+---
+- name: Upgrade OS packages
+  hosts: all
+  remote_user: root
+  roles:
+    - os-safe-upgrade
