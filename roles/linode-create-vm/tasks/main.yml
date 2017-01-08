@@ -12,8 +12,9 @@
     plan: "{{ linode_plan }}"
     datacenter: "{{ linode_datacenter }}"
     distribution: "{{ linode_distro }}"
-    ssh_pub_key: "{{ lookup('file', '{{ ssh_pub_key }}') }}"
+    ssh_pub_key: "{{ item }}"
     wait: yes
+  with_file: "{{ ssh_pub_key }}"
   register: linode
 
 - name: show the registered Linode VM

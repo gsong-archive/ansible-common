@@ -6,4 +6,5 @@
 - name: Add authorized_key for {{ user }}
   authorized_key:
     user: "{{ user }}"
-    key: "{{ lookup('file', '{{ ssh_pub_key }}') }}"
+    key: "{{ item }}"
+  with_file: "{{ ssh_pub_key }}"
