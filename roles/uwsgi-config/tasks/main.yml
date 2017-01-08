@@ -1,6 +1,7 @@
 # Add nginx available sites configurations
 # vars:
 #   - app_root
+#   - container_app_root
 #   - hostnames
 ---
 - name: create working directory

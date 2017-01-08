@@ -1,6 +1,6 @@
 {% set label = item.split('.')[0] %}
 [uwsgi]
-base = {{ app_root }}
+base = {{ container_app_root }}
 var = /usr/local/var
 
 chdir = %(base)
