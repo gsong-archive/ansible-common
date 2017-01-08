@@ -4,7 +4,6 @@
 #   - linode_distro
 #   - linode_name
 #   - linode_plan
-#   - linode_ssh_pub_key
 ---
 - name: procure VM
   local_action:
@@ -13,7 +12,7 @@
     plan: "{{ linode_plan }}"
     datacenter: "{{ linode_datacenter }}"
     distribution: "{{ linode_distro }}"
-    ssh_pub_key: "{{ linode_ssh_pub_key }}"
+    ssh_pub_key: "{{ lookup('file', '{{ ssh_pub_key }}') }}"
     wait: yes
   register: linode
 
