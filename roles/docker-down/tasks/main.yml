@@ -1,8 +1,8 @@
 # Stop and remove Docker containers
 # vars:
 #   - docker_compose
-#   - host_app_root
 #   - env
+#   - host_app_root
 ---
 - name: stop and remove {{ env }} Docker containers
   command: "{{ docker_compose}} down"
