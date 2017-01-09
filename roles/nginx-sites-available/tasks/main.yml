@@ -2,14 +2,16 @@
 # vars:
 #   - host_app_root
 #   - hostnames
+#   - nginx_site_template
+#   - nginx_sites_available_path
 ---
 - name: create working directory
   file:
-    path: "{{ host_app_root }}/.data/nginx/sites-available"
+    path: "{{ nginx_sites_available_path }}"
     state: directory
 
 - name: make configuration files
   template:
-    src: site.conf.j2
-    dest: "{{ host_app_root }}/.data/nginx/sites-available/{{ item.split('.')[0] }}.conf"
+    src: "{{ nginx_site_template }}"
+    dest: "{{ nginx_sites_available_path }}/{{ item.split('.')[0] }}.conf"
   with_items: "{{ hostnames }}"

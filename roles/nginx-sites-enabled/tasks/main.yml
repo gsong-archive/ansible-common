@@ -2,15 +2,16 @@
 # vars:
 #   - host_app_root
 #   - hostnames
+#   - nginx_sites_enabled_path
 ---
 - name: create working directory
   file:
-    path: "{{ host_app_root }}/.data/nginx/sites-enabled"
+    path: "{{ nginx_sites_enabled_path }}"
     state: directory
 
 - name: make symlinks from sites-available
   file:
     src: "../sites-available/{{ item.split('.')[0] }}.conf"
-    dest: "{{ host_app_root }}/.data/nginx/sites-enabled/{{ item.split('.')[0] }}.conf"
+    dest: "{{ nginx_sites_enabled_path }}/{{ item.split('.')[0] }}.conf"
     state: link
   with_items: "{{ hostnames }}"

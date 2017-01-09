@@ -1,2 +1,4 @@
 ---
 host_app_root: /app
+nginx_site_template: site.conf.j2
+nginx_sites_available_path: "{{ host_app_root }}/.data/nginx/sites-available"
