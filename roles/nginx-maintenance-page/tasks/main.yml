@@ -1,0 +1,14 @@
+# Create maintenance page
+# vars:
+#   - host_app_root
+#   - nginx_maintenance_page_path
+---
+- name: create working directory
+  file:
+    path: "{{ nginx_maintenance_page_path }}"
+    state: directory
+
+- name: make configuration files
+  template:
+    src: maintenance.html.j2
+    dest: "{{ nginx_maintenance_page_path }}/maintenance.html"

@@ -4,6 +4,7 @@
 #   - hostnames
 #   - nginx_site_template
 #   - nginx_sites_available_path
+#   - nginx_document_root (maintenance)
 ---
 - name: create working directory
   file:
