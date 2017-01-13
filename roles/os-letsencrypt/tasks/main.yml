@@ -1,6 +1,7 @@
 # Install letsencrypt SSL cert
 # vars:
 #   - cache_valid_time
+#   - certbot_flags
 #   - hostnames
 #   - letsencrypt_config_dir
 #   - letsencrypt_cron_hours
@@ -28,6 +29,7 @@
 - name: get the certificates
   command: >
     letsencrypt certonly -c {{ letsencrypt_config_dir }}/{{ item }}.ini
+    {{ certbot_flags }}
   args:
     creates: "{{ letsencrypt_root }}/live/{{ item }}"
   with_items: "{{ hostnames }}"
