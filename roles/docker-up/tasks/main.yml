@@ -2,10 +2,9 @@
 # vars:
 #   - containers: specify specific containers to act on
 #   - docker_compose
-#   - env
 #   - host_app_root
 ---
-- name: start {{ env }} Docker containers
+- name: start Docker containers
   command: "{{ docker_compose }} up -d {{ containers }}"
   args:
     chdir: "{{ host_app_root }}"

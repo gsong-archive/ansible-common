@@ -1,5 +1,4 @@
 ---
 containers: ''  # space separated list of containers to act on
 docker_compose: docker-compose
-env: production
 host_app_root: /app
