@@ -2,3 +2,4 @@
 db_container_name: db
 db_export_download_dir: /tmp
 host_app_root: /app
+postgres_user: postgres

@@ -4,32 +4,14 @@
 #   - db_export_download_dir
 #   - db_export_url
 #   - host_app_root
+#   - postgres_db
+#   - postgres_user
 ---
 - name: start db container
   include_role:
     name: docker-up
   vars:
     containers: "{{ db_container_name }}"
-
-- name: Get PostgreSQL user name
-  raw: >
-    cd {{ host_app_root }} &&
-    docker-compose exec
-    {{ db_container_name }}
-    printenv POSTGRES_USER
-  register: _raw
-- set_fact:
-    postgres_user: "{{ _raw.stdout.strip() }}"
-
-- name: Get PostgreSQL db name
-  raw: >
-    cd {{ host_app_root }} &&
-    docker-compose exec
-    {{ db_container_name }}
-    printenv POSTGRES_DB
-  register: _raw
-- set_fact:
-    postgres_db: "{{ _raw.stdout.strip() }}"
 
 - name: download export file
   get_url:
