@@ -1,0 +1,21 @@
+# Display maintenance message instead of serving the app
+---
+- name: Shut down app containers
+  hosts: all
+  remote_user: "{{ root_user | default('root') }}"
+  roles:
+    - docker-down
+
+- name: Set up and start maintenance container
+  hosts: all
+  remote_user: "{{ root_user | default('root') }}"
+  vars:
+    docker_compose: docker-compose -f docker-compose.maintenance.yml
+  roles:
+    - nginx-maintenance-page
+    - role: nginx-sites-available
+      nginx_site_template: maintenance.conf.j2
+      nginx_sites_available_path: "{{ host_app_root }}/.data/nginx-maint/sites-available"
+    - role: nginx-sites-enabled
+      nginx_sites_enabled_path: "{{ host_app_root }}/.data/nginx-maint/sites-enabled"
+    - docker-up

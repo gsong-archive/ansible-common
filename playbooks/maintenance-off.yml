@@ -1,0 +1,15 @@
+# Disable maintenance and restart the app
+---
+- name: Shut down maintenance container
+  hosts: all
+  remote_user: "{{ root_user | default('root') }}"
+  vars:
+    docker_compose: docker-compose -f docker-compose.maintenance.yml
+  roles:
+    - docker-down
+
+- name: Start app services
+  hosts: all
+  remote_user: "{{ root_user | default('root') }}"
+  roles:
+    - docker-up

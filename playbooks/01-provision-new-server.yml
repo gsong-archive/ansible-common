@@ -1,0 +1,15 @@
+# Provision a new VM and install app
+---
+- name: Provision Linode VM
+  hosts: localhost
+  gather_facts: False
+  roles:
+    - linode-create-vm
+
+- name: Configure host
+  hosts: linode
+  remote_user: "{{ root_user | default('root') }}"
+  roles:
+    - role: os-configure-host
+      hostname: "{{ hostnames.0 }}"
+    - nginx-dhparam
