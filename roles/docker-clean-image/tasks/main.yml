@@ -1,12 +1,7 @@
-# Pull Docker images
+# Clean Docker images
 # vars:
-#   - docker_images
+#   - docker
 ---
-- name: install pre-requisite
-  pip:
-    name: docker-py
-
-- name: pull Docker images
-  docker_image:
-    name: "{{ item }}"
-  with_items: "{{ docker_images }}"
+- name: clean Docker images
+  raw: "{{ docker }} rmi $({{ docker }} images -q -f dangling=true)"
+  ignore_errors: yes
