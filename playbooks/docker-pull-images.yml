@@ -1,7 +1,7 @@
-# Setup a new VM with app
+# Update Docker images
 ---
-- name: Upgrade OS packages
+- name: Update Docker images
   hosts: all
   remote_user: "{{ root_user | default('root') }}"
   roles:
-    - os-safe-upgrade
+    - docker-pull-image

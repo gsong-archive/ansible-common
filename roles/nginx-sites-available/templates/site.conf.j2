@@ -6,12 +6,15 @@ upstream {{ label }} {
 server {
   location /static {
     alias /staticfiles;
+    gzip_static on;
+    expires max;
+    add_header Cache-Control public;
   }
 
   # Finally, send all non-media requests to the Django server.
   location / {
     uwsgi_pass  {{ label }};
-    include     /etc/uwsgi/uwsgi_params;
+    include     /etc/nginx/uwsgi_params;
   }
 
   {% include 'shared.j2' %}

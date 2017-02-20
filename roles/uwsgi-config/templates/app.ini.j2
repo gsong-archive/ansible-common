@@ -1,11 +1,8 @@
 {% set label = item.split('.')[0] %}
 [uwsgi]
-base = {{ container_app_root }}
-var = /usr/local/var
-
-chdir = %(base)
+chdir = {{ container_app_root }}
 module = lehrhaus_projects.wsgi
-socket = %(var)/run/{{ label }}.sock
+socket = /usr/local/var/run/{{ label }}.sock
 master = true
 vacuum = true
 limit-as = 1024

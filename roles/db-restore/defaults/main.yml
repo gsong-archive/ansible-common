@@ -1,5 +1,8 @@
 ---
 db_container_name: db
 db_export_download_dir: /tmp
+docker: docker
+docker_compose: docker-compose
 host_app_root: /app
+ignore_pg_restore_error: no
 postgres_user: postgres

@@ -1,0 +1,18 @@
+# Add deployment user
+# vars:
+#   - user_groups
+#   - user_login
+#   - ssh_pub_key
+---
+- name: Add {{ user_login }} user
+  user:
+    name: "{{ user_login }}"
+    groups: "{{ user_groups }}"
+    append: yes
+    shell: "{{ user_shell }}"
+
+- name: Add authorized_key for {{ user_login }}
+  include_role:
+    name: os-add-ssh-access
+  vars:
+    user: "{{ user_login }}"

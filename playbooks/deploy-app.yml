@@ -1,0 +1,11 @@
+# Deploy specified version to server
+---
+- name: Deploy app to server
+  hosts: all
+  remote_user: "{{ deployment_user | default('deployer') }}"
+  roles:
+    - app-checkout
+    - docker-pull-image
+    - docker-build
+    - docker-up
+    - docker-clean-image

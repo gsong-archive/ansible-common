@@ -1,7 +1,7 @@
 # Setup a new VM with app
 ---
-- name: Upgrade OS packages
+- name: Restore DB from S3 download
   hosts: all
   remote_user: "{{ root_user | default('root') }}"
   roles:
-    - os-safe-upgrade
+    - db-restore

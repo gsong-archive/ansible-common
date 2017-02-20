@@ -1,0 +1,6 @@
+# Clean Docker images
+# vars:
+#   - docker_images
+---
+- name: clean Docker images
+  command: "{{ docker }} rmi $({{ docker }} images -q -f dangling=true)"

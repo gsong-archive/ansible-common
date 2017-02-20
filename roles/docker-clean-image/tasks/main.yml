@@ -1,0 +1,12 @@
+# Pull Docker images
+# vars:
+#   - docker_images
+---
+- name: install pre-requisite
+  pip:
+    name: docker-py
+
+- name: pull Docker images
+  docker_image:
+    name: "{{ item }}"
+  with_items: "{{ docker_images }}"

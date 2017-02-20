@@ -2,7 +2,6 @@
 # vars:
 #   - compose_files
 #   - django_secret_key
-#   - django_settings
 #   - env
 #   - host_app_root
 #   - postgres_db
