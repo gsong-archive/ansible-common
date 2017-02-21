@@ -1,0 +1,7 @@
+# Setup a new VM with app
+---
+- name: Restore DB from S3 download
+  hosts: localhost
+  connection: local
+  roles:
+    - local-db-restore
