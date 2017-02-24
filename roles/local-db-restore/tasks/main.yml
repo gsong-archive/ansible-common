@@ -1,20 +1,10 @@
 # Restore the database based on export file
 # vars:
-#   - db_container_name
 #   - db_export_download_dir
 #   - db_export_url
-#   - docker
-#   - docker_compose
-#   - host_app_root
 #   - ignore_pg_restore_error
 #   - postgres_db
-#   - postgres_user
 ---
-- name: start db container
-  include_role:
-    name: docker-up
-  vars:
-    containers: "{{ db_container_name }}"
 
 - name: download export file
   get_url:
@@ -22,51 +12,12 @@
     dest: "{{ db_export_download_dir }}"
   register: _db_export
 
-- include_role:
-    name: docker-down
-
-- name: start db container
-  include_role:
-    name: docker-up
-  vars:
-    containers: "{{ db_container_name }}"
-
-- name: get id of {{ db_container_name }} container
-  command: "{{ docker_compose }} ps -q {{ db_container_name }}"
-  args:
-    chdir: "{{ host_app_root }}"
-  register: _db_container_id
-
-- name: copy the export file into the container
-  command: >
-    {{ docker }} cp
-    {{ _db_export.dest }}
-    {{ _db_container_id.stdout }}:{{ db_export_download_dir }}
-
 - name: drop the current database
-  command: >
-    cd {{ host_app_root }} &&
-    {{ docker_compose }} exec
-    --user {{ postgres_user }}
-    {{ db_container_name }}
-    dropdb --if-exists {{ postgres_db }}
+  command: dropdb --if-exists {{ postgres_db }}
 
 - name: create the database
-  command: >
-    cd {{ host_app_root }} &&
-    {{ docker_compose }} exec
-    --user {{ postgres_user }}
-    {{ db_container_name }}
-    createdb {{ postgres_db }}
+  command: createdb {{ postgres_db }}
 
 - name: restore the database
-  command: >
-    cd {{ host_app_root }} &&
-    {{ docker_compose }} exec
-    --user {{ postgres_user }}
-    {{ db_container_name }}
-    pg_restore -O -c --if-exists -d {{ postgres_db }} {{ _db_export.dest }}
+  command: pg_restore -O -c --if-exists -d {{ postgres_db }} {{ _db_export.dest }}
   ignore_errors: "{{ ignore_pg_restore_error }}"
-
-- include_role:
-    name: docker-up

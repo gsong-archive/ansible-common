@@ -10,12 +10,6 @@
 #   - postgres_db
 #   - postgres_user
 ---
-- name: start db container
-  include_role:
-    name: docker-up
-  vars:
-    containers: "{{ db_container_name }}"
-
 - name: download export file
   get_url:
     url: "{{ db_export_url }}"

@@ -2,17 +2,6 @@
 # vars:
 #   - docker_images
 ---
-- name: install pre-requisite
-  pip:
-    name: docker-py
-    state: latest
-
 - name: pull Docker images
-  docker_image:
-    name: "{{ item }}"
+  command: docker pull {{ item }}
   with_items: "{{ docker_images }}"
-
-- name: uninstall pre-requisite
-  pip:
-    name: docker-py
-    state: absent
