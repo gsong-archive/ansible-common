@@ -1,3 +1,5 @@
+# {{ ansible_managed }}
+
 {% set label = item.split('.')[0] %}
 upstream {{ label }} {
     server unix:///usr/local/var/run/{{ label }}.sock;
