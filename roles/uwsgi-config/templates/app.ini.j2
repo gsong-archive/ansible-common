@@ -1,3 +1,5 @@
+# {{ ansible_managed }}
+
 {% set label = item.split('.')[0] %}
 [uwsgi]
 chdir = {{ container_app_root }}
