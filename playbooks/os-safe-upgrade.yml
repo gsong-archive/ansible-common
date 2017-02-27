@@ -2,6 +2,7 @@
 ---
 - name: Upgrade OS packages
   hosts: all
+  strategy: free
   remote_user: "{{ root_user | default('root') }}"
   roles:
     - os-safe-upgrade

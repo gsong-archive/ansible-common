@@ -2,12 +2,14 @@
 ---
 - name: Shut down app containers
   hosts: all
+  strategy: free
   remote_user: "{{ root_user | default('root') }}"
   roles:
     - docker-down
 
 - name: Set up and start maintenance container
   hosts: all
+  strategy: free
   remote_user: "{{ root_user | default('root') }}"
   vars:
     docker_compose: docker-compose -f docker-compose.maintenance.yml

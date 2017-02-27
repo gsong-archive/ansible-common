@@ -2,6 +2,7 @@
 ---
 - name: Update Docker images
   hosts: all
+  strategy: free
   remote_user: "{{ root_user | default('root') }}"
   roles:
     - docker-pull-image
