@@ -1,4 +1,3 @@
 ---
 db_export_download_dir: /tmp
 ignore_pg_restore_error: no
-postgres_db: ecogold
