@@ -5,4 +5,5 @@
   strategy: free
   remote_user: "{{ root_user | default('root') }}"
   roles:
+    - os-install-docker-tools
     - os-safe-upgrade
