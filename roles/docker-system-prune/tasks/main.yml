@@ -1,0 +1,6 @@
+# Clean Docker images
+# vars:
+#   - docker
+---
+- name: remove unused Docker data
+  raw: "{{ docker }} system prune -f"

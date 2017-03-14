@@ -1,7 +1,0 @@
-# Clean Docker images
-# vars:
-#   - docker
----
-- name: clean Docker images
-  raw: "{{ docker }} rmi $({{ docker }} images -q -f dangling=true)"
-  ignore_errors: yes

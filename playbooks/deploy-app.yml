@@ -8,4 +8,4 @@
     - docker-pull-image
     - docker-build
     - docker-up
-    - docker-clean-image
+    - docker-system-prune
