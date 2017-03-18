@@ -3,6 +3,7 @@
 #   - container_app_root
 #   - host_app_root
 #   - hostnames
+#   - uwsgi_module
 ---
 - name: create working directory
   file:

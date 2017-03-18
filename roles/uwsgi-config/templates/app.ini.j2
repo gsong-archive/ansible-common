@@ -3,7 +3,7 @@
 {% set label = item.split('.')[0] %}
 [uwsgi]
 chdir = {{ container_app_root }}
-module = lehrhaus_projects.wsgi
+module = {{ uwsgi_module }}
 socket = /usr/local/var/run/{{ label }}.sock
 master = true
 vacuum = true
