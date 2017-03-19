@@ -7,3 +7,7 @@ letsencrypt_config_dir: "{{ letsencrypt_root }}/config"
 letsencrypt_cron_hour: "{{ 11 | random }}"
 letsencrypt_cron_hours: "{{ letsencrypt_cron_hour }},{{ letsencrypt_cron_hour | int + 12 }}"
 letsencrypt_cron_minute: "{{ 59 | random }}"
+
+web_container_name: web
+docker_compose: docker-compose
+host_app_root: /app

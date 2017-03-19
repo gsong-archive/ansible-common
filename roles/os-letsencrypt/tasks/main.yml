@@ -2,12 +2,15 @@
 # vars:
 #   - cache_valid_time
 #   - certbot_flags
+#   - docker_compose
+#   - host_app_root
 #   - hostnames
 #   - letsencrypt_config_dir
 #   - letsencrypt_cron_hours
 #   - letsencrypt_cron_minute
 #   - letsencrypt_email
 #   - letsencrypt_root
+#   - web_container_name
 ---
 - name: install letsencrypt CLI
   apt:
@@ -37,6 +40,9 @@
 - name: install autorenew cron job
   cron:
     name: letsencrypt renew
-    job: letsencrypt renew 2>&1 > /var/tmp/letsencrypt.txt
+    job: >
+      letsencrypt renew 2>&1 > /var/tmp/letsencrypt.txt
+      && cd {{ host_app_root }}
+      && {{ docker_compose }} restart {{ web_container_name }}
     hour: "{{ letsencrypt_cron_hours }}"
     minute: "{{ letsencrypt_cron_minute }}"

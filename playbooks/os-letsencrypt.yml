@@ -1,0 +1,8 @@
+# Install Let's Encrypt SSL
+---
+- name: Install Let's Encrypt SSL
+  hosts: all
+  strategy: free
+  remote_user: "{{ root_user | default('root') }}"
+  roles:
+    - os-letsencrypt
