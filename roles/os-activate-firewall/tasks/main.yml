@@ -3,10 +3,9 @@
 #   - cache_valid_time
 ---
 - name: install ufw
-  apt:
+  package:
     name: ufw
-    update_cache: yes
-    cache_valid_time: "{{ cache_valid_time }}"
+    state: latest
 
 - name: allow outgoing
   ufw:

@@ -8,10 +8,9 @@
 #   - docker_tools_deps_pkgs: apt packages that Docker needs
 ---
 - name: install package dependencies
-  apt:
+  package:
     name: "{{ docker_tools_deps_pkgs }}"
-    update_cache: yes
-    cache_valid_time: "{{ cache_valid_time }}"
+    state: latest
 
 - name: logical volume setup
   command: dmsetup mknodes
@@ -26,10 +25,9 @@
     repo: "{{ docker_repo }}"
 
 - name: install docker-engine
-  apt:
+  package:
     name: docker-engine
-    update_cache: yes
-    cache_valid_time: "{{ cache_valid_time }}"
+    state: latest
 
 - name: start docker service
   service:

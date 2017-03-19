@@ -13,10 +13,9 @@
 #   - web_container_name
 ---
 - name: install letsencrypt CLI
-  apt:
+  package:
     name: letsencrypt
-    update_cache: yes
-    cache_valid_time: "{{ cache_valid_time }}"
+    state: latest
 
 - name: create directory {{ letsencrypt_config_dir }}
   file:

@@ -4,10 +4,9 @@
 ---
 # See https://github.com/ansible/ansible/issues/18987
 - name: install aptitude (workaround)
-  apt:
+  package:
     name: aptitude
-    update_cache: yes
-    cache_valid_time: "{{ cache_valid_time }}"
+    state: latest
 
 - name: safe-upgrade OS packages
   apt:
