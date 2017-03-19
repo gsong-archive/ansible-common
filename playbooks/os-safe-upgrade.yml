@@ -1,4 +1,4 @@
-# Setup a new VM with app
+# Upgrade OS pacakges and Docker tools
 ---
 - name: Upgrade OS packages
   hosts: all
