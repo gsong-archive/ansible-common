@@ -10,7 +10,7 @@
 #   - letsencrypt_cron_minute
 #   - letsencrypt_email
 #   - letsencrypt_root
-#   - web_container_name
+#   - web_service_name
 ---
 - name: install letsencrypt CLI
   package:
@@ -42,6 +42,6 @@
     job: >
       letsencrypt renew 2>&1 > /var/tmp/letsencrypt.txt
       && cd {{ host_app_root }}
-      && {{ docker_compose }} restart {{ web_container_name }}
+      && {{ docker_compose }} restart {{ web_service_name }}
     hour: "{{ letsencrypt_cron_hours }}"
     minute: "{{ letsencrypt_cron_minute }}"

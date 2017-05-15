@@ -14,5 +14,5 @@
 - name: make configuration files
   template:
     src: "{{ nginx_site_template }}"
-    dest: "{{ nginx_sites_available_path }}/{{ item.split('.')[0] }}.conf"
+    dest: "{{ nginx_sites_available_path }}/{{ item }}.conf"
   with_items: "{{ hostnames }}"

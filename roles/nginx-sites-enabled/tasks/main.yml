@@ -11,7 +11,7 @@
 
 - name: make symlinks from sites-available
   file:
-    src: "../sites-available/{{ item.split('.')[0] }}.conf"
-    dest: "{{ nginx_sites_enabled_path }}/{{ item.split('.')[0] }}.conf"
+    src: "../sites-available/{{ item }}.conf"
+    dest: "{{ nginx_sites_enabled_path }}/{{ item }}.conf"
     state: link
   with_items: "{{ hostnames }}"
