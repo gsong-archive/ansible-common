@@ -1,5 +1,6 @@
 # Add nginx available sites configurations
 # vars:
+#   - create_nginx_sites_available_path
 #   - host_app_root
 #   - hostnames
 #   - nginx_document_root (maintenance)
@@ -10,6 +11,7 @@
   file:
     path: "{{ nginx_sites_available_path }}"
     state: directory
+  when: create_nginx_sites_available_path
 
 - name: make configuration files
   template:

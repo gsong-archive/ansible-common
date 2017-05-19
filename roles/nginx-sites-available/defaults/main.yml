@@ -1,4 +1,5 @@
 ---
+create_nginx_sites_available_path: True
 host_app_root: /app
 nginx_document_root: /public
 nginx_site_template: site.conf.j2
