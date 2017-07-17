@@ -1,9 +1,8 @@
 # Install docker-engine and docker-compose
 # Add users to docker group
 # vars:
-#   - cache_valid_time
 #   - docker_apt_key_id
-#   - docker_apt_keyserver
+#   - docker_apt_key_url
 #   - docker_repo
 #   - docker_tools_deps_pkgs: apt packages that Docker needs
 ---
@@ -17,16 +16,16 @@
 
 - name: add docker apt key
   apt_key:
-    keyserver: "{{ docker_apt_keyserver }}"
+    url: "{{ docker_apt_key_url }}"
     id: "{{ docker_apt_key_id }}"
 
 - name: add docker repo
   apt_repository:
     repo: "{{ docker_repo }}"
 
-- name: install docker-engine
+- name: install docker-ce
   package:
-    name: docker-engine
+    name: docker-ce
     state: latest
 
 - name: start docker service
