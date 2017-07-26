@@ -40,8 +40,8 @@
   cron:
     name: letsencrypt renew
     job: >
-      letsencrypt renew &> /var/tmp/letsencrypt.txt
+      letsencrypt renew >/var/tmp/letsencrypt.txt 2>&1
       && cd {{ host_app_root }}
-      && {{ docker_compose }} restart {{ web_service_name }} &>> /var/tmp/letsencrypt.txt
+      && {{ docker_compose }} restart {{ web_service_name }} >>/var/tmp/letsencrypt.txt 2>&1
     hour: "{{ letsencrypt_cron_hours }}"
     minute: "{{ letsencrypt_cron_minute }}"

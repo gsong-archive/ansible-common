@@ -9,5 +9,5 @@ letsencrypt_cron_hours: "{{ letsencrypt_cron_hour }},{{ letsencrypt_cron_hour | 
 letsencrypt_cron_minute: "{{ 59 | random }}"
 
 web_service_name: web
-docker_compose: docker-compose
+docker_compose: /usr/local/bin/docker-compose
 host_app_root: /app
