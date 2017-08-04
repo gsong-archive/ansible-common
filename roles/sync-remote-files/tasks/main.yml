@@ -1,0 +1,13 @@
+# Synchronize remote files
+# vars:
+#   - sync_delete
+#   - sync_dest
+#   - sync_host
+#   - sync_src
+---
+- name: synchronize media
+  synchronize:
+    src: "{{ sync_src }}"
+    dest: "{{ sync_dest }}"
+    delete: "{{ sync_delete }}"
+  delegate_to: "{{ sync_host }}"
