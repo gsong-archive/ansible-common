@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+  ansible:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        GROUP_ID: ${GROUP_ID:-1000}
+        USER_ID: ${USER_ID:-1000}
+    image: myproject/ansible
+    container_name: myproject_ansible
+    env_file: .env
+    environment:
+      SSH_KEYS: ${SSH_KEYS:-$HOME/.ssh/id_rsa}
+    networks:
+      - ansible
+    volumes:
+      - ${ANSIBLE_VARS_DIR:-./.data/ansible-vars}:/ansible-vars:ro
+      - ${SSH_DIR:-~/.ssh}:/home/ansible/.ssh:ro
+      - ./.data/services/ansible/bash_history:/home/ansible/.bash_history
+      - ./ansible/etc:/etc/ansible:ro
+      - .:/app:ro
+
+networks:
+  ansible:

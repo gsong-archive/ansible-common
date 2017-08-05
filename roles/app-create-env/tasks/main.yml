@@ -1,0 +1,26 @@
+# Create the .env file
+# vars:
+#   - compose_files
+#   - django_env_template
+#   - env
+#   - host_app_root
+#   - postgres_db
+#   - postgres_user
+---
+- name: create the .env file
+  template:
+    src: env.j2
+    dest: "{{ host_app_root }}/.env"
+    force: no
+
+- name: create {{ host_app_root }}/.data directory
+  file:
+    path: "{{ host_app_root }}/.data"
+    state: directory
+    mode: 0755
+
+- name: create the .env.app file
+  template:
+    src: "{{ django_env_template }}"
+    dest: "{{ host_app_root }}/.data/.env.app"
+    force: no
