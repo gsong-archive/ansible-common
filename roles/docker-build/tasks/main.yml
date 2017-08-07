@@ -3,7 +3,12 @@
 #   - docker_compose
 #   - host_app_root
 ---
+- name: build base image
+  command: "{{ docker_compose}} -f docker-compose.base.yml build --pull"
+  args:
+    chdir: "{{ host_app_root }}"
+
 - name: build Docker images
-  command: "{{ docker_compose}} build --pull"
+  command: "{{ docker_compose}} build"
   args:
     chdir: "{{ host_app_root }}"
