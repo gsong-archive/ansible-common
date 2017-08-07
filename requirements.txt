@@ -4,5 +4,7 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
+jinja2==2.8.1
 linode-python==1.1.1
+markupsafe==1.0           # via jinja2
 pycurl==7.43.0
