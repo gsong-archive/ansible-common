@@ -4,4 +4,4 @@ services:
   ansible:
     build:
       context: .
-    image: gsong/ansible
+    image: gsong/ansible-common
