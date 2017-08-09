@@ -3,7 +3,7 @@
 #   - create_nginx_sites_available_path
 #   - host_app_root
 #   - hostnames
-#   - nginx_document_root (maintenance)
+#   - nginx_document_root
 #   - nginx_site_template
 #   - nginx_sites_available_path
 ---

@@ -6,8 +6,10 @@ upstream {{ label }} {
 }
 
 server {
-  location /static {
-    alias /staticfiles;
+  root {{ nginx_document_root }};
+
+  # Django media and static files
+  location ~ /(media|static)/  {
     gzip_static on;
     expires max;
     add_header Cache-Control public;
