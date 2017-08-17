@@ -2,6 +2,7 @@
 
 {% set label = item.split('.')[0] %}
 [uwsgi]
+env = {{ uwsgi_env }}
 chdir = {{ container_app_root }}
 module = {{ uwsgi_module }}
 socket = /usr/local/var/run/{{ label }}.sock

@@ -1,3 +1,4 @@
 ---
 container_app_root: /app
 host_app_root: /app
+uwsgi_env: LANG=en_US.UTF-8
