@@ -46,8 +46,7 @@ RUN apk add --update --no-cache \
     py-pip \
     python2-dev
 
-ARG ANSIBLE_ROLES_PATH
-WORKDIR ${ANSIBLE_ROLES_PATH}
+WORKDIR /ansible-galaxy/roles
 RUN ansible-galaxy install --roles-path . nickhammond.logrotate
 
 WORKDIR /ansible-common

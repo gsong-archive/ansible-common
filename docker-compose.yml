@@ -4,8 +4,6 @@ services:
   ansible:
     build:
       context: .
-      args:
-        ANSIBLE_ROLES_PATH: /ansible-galaxy/roles
     image: gsong/ansible-common
     volumes:
       - .:/ansible-common
