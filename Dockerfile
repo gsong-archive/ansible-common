@@ -38,7 +38,7 @@ RUN apk add --update --no-cache \
     musl-dev \
     py-pip \
     python2-dev \
-  && pip install --no-cache-dir git+https://github.com/ansible/ansible.git@devel \
+  && pip install --no-cache-dir git+https://github.com/ansible/ansible.git@v2.4.0.0-0.4.rc4 \
   && apk del \
     gcc \
     git \

@@ -1,5 +1,5 @@
 # See https://github.com/ansible/ansible/issues/20494
-jinja2==2.8.1
+jinja2
 
 linode-python
 pycurl
