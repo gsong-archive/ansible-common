@@ -3,4 +3,4 @@
 #   - docker
 ---
 - name: remove unused Docker data
-  raw: "{{ docker }} system prune -f"
+  raw: "{{ docker }} system prune -f --volumes"
