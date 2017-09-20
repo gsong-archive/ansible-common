@@ -8,11 +8,10 @@ module = {{ uwsgi_module }}
 socket = /usr/local/var/run/{{ label }}.sock
 master = true
 vacuum = true
-limit-as = 1024
 max-request = 100
-evil-reload-on-as = 512
-evil-reload-on-rss = 384
-workers = 5
+reload-on-as = 1024
+reload-on-rss = 256
+workers = 4
 die-on-term = true
 
 req-logger = file:/var/log/uwsgi/access.log
