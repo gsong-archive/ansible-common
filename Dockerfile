@@ -3,7 +3,7 @@ ENV PYTHONUNBUFFERED 1
 
 RUN echo $'source /usr/share/bash-completion/bash_completion\n\
 export HISTFILE=$HOME/.bash_history/history\n\
-PS1=\'\u:\w\$ \''\
+PS1=\'\u:\w$ \''\
 >> /etc/bash.bashrc
 
 RUN apk add --update --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
