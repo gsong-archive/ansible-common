@@ -3,7 +3,8 @@
 * Provision new server at Linode
 * Run Ansible playbooks at remote server
 
-See <example/> for sample files of how to use this image in your own project.
+See [example](example/) for sample files of how to use this image in your own
+project.
 
 ## TODO
 
