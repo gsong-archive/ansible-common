@@ -5,7 +5,8 @@
   remote_user: "{{ deployment_user | default('deployer') }}"
   roles:
     - app-checkout
-    - docker-pull-image
+    - role: docker-pull-image
+      when: docker_images
     - docker-build
     - docker-up
     - docker-system-prune
