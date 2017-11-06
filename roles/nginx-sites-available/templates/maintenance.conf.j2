@@ -9,4 +9,6 @@ server {
   }
 
   {% include 'shared.j2' %}
+
+  include /etc/nginx/shared/ssl.conf;
 }
