@@ -12,4 +12,3 @@
   roles:
     - role: os-configure-host
       hostname: "{{ hostnames.0 }}"
-    - nginx-dhparam
