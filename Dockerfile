@@ -6,14 +6,18 @@ export HISTFILE=$HOME/.bash_history/history\n\
 PS1=\'\u:\w$ \''\
 >> /etc/bash.bashrc
 
-RUN apk add --update --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
-  ansible \
+RUN apk add --update --no-cache \
   bash \
   bash-completion \
-  keychain \
   make \
   openssh-client \
   py-curl
+
+RUN apk add --update --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/main/ \
+  ansible
+
+RUN apk add --update --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
+  keychain
 
 COPY ./requirements.txt /tmp/
 RUN apk add --update --no-cache \
@@ -27,22 +31,6 @@ RUN apk add --update --no-cache \
     gcc \
     musl-dev \
     openssl-dev \
-    py-pip \
-    python2-dev
-
-# Workaround for Ansible linode module bug
-# See https://github.com/ansible/ansible/pull/23874 for more info
-RUN apk add --update --no-cache \
-    gcc \
-    git \
-    musl-dev \
-    py-pip \
-    python2-dev \
-  && pip install --no-cache-dir git+https://github.com/ansible/ansible.git@v2.4.0.0-0.4.rc4 \
-  && apk del \
-    gcc \
-    git \
-    musl-dev \
     py-pip \
     python2-dev
 
