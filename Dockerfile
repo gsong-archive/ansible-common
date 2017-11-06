@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:latest
 ENV PYTHONUNBUFFERED 1
 
 RUN echo $'source /usr/share/bash-completion/bash_completion\n\
