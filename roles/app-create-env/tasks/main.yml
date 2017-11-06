@@ -1,5 +1,7 @@
 # Create the .env file
 # vars:
+#   - app_create_env_force
+#   - app_env_template
 #   - compose_files
 #   - django_env_template
 #   - env
@@ -9,9 +11,9 @@
 ---
 - name: create the .env file
   template:
-    src: env.j2
+    src: "{{ app_env_template }}"
     dest: "{{ host_app_root }}/.env"
-    force: no
+    force: "{{ app_create_env_force }}"
 
 - name: create {{ host_app_root }}/.data directory
   file:
@@ -23,4 +25,4 @@
   template:
     src: "{{ django_env_template }}"
     dest: "{{ host_app_root }}/.data/.env.app"
-    force: no
+    force: "{{ app_create_env_force }}"

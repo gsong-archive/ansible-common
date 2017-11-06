@@ -1,2 +1,4 @@
 ---
+app_create_env_force: yes
+app_env_template: env.j2
 postgres_user: postgres
