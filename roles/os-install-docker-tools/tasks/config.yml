@@ -1,0 +1,14 @@
+---
+- name: create docker config directory
+  file:
+    path: /etc/docker
+    state: directory
+    mode: 0600
+
+- name: configure docker daemon.json
+  template:
+    src: daemon.json.j2
+    dest: /etc/docker/daemon.json
+    mode: 0400
+  notify: restart docker
+

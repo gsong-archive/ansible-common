@@ -28,6 +28,8 @@
     name: docker-ce
     state: latest
 
+- include_tasks: config.yml
+
 - name: start docker service
   service:
     name: docker
