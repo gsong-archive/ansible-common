@@ -11,6 +11,7 @@ RUN apk add --update --no-cache \
   bash-completion \
   make \
   openssh-client \
+  perl \
   py-curl
 
 RUN apk add --update --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/main/ \
