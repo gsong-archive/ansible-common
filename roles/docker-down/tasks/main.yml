@@ -4,6 +4,6 @@
 #   - host_app_root
 ---
 - name: stop and remove Docker containers
-  command: "{{ docker_compose}} down"
+  command: "{{ docker_compose}} down --remove-orphans"
   args:
     chdir: "{{ host_app_root }}"
