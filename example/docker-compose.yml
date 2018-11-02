@@ -4,11 +4,11 @@ services:
   ansible:
     build:
       context: .
-      dockerfile: Dockerfile
       args:
         GROUP_ID: ${GROUP_ID:-1000}
         USER_ID: ${USER_ID:-1000}
     image: myproject/ansible
+    hostname: ansible
     container_name: myproject_ansible
     env_file: .env
     environment:

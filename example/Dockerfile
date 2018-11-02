@@ -1,12 +1,11 @@
-FROM gsong/ansible:latest
+FROM gsong/ansible-common
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
-RUN addgroup -g ${GROUP_ID} ansible
-RUN adduser -s /bin/bash -u ${USER_ID} -G ansible -D -g "" ansible
+RUN addgroup --gid ${GROUP_ID} ansible
+RUN adduser --shell /bin/bash --uid ${USER_ID} --ingroup ansible --disabled-password --gecos "" ansible
 
 USER ansible
-RUN echo $'source /etc/bash.bashrc\n\
-/usr/bin/keychain $(eval echo ${SSH_KEYS})\n\
-source ${HOME}/.keychain/${HOSTNAME}-sh'\
->> $HOME/.bashrc
+RUN echo 'export HISTFILE=${HOME}/.bash_history/history' >> ${HOME}/.bashrc
+RUN echo '/usr/bin/keychain $(eval echo ${SSH_KEYS})' >> ${HOME}/.bashrc
+RUN echo 'source ${HOME}/.keychain/${HOSTNAME}-sh' >> ${HOME}/.bashrc

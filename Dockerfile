@@ -1,39 +1,15 @@
-FROM alpine:latest
+FROM python:3
 ENV PYTHONUNBUFFERED 1
 
-RUN echo $'source /usr/share/bash-completion/bash_completion\n\
-export HISTFILE=$HOME/.bash_history/history\n\
-PS1=\'\u:\w$ \''\
->> /etc/bash.bashrc
-
-RUN apk add --update --no-cache \
-  bash \
+RUN apt-get update && apt-get install --no-install-recommends -y \
   bash-completion \
-  make \
-  openssh-client \
-  perl \
-  py-curl
+  keychain \
+  && rm -rf /var/lib/apt/lists/*
+RUN echo 'source /usr/share/bash-completion/bash_completion' >> /etc/bash.bashrc
 
-RUN apk add --update --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/main/ \
-  ansible
-
-RUN apk add --update --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
-  keychain
-
+RUN pip install --no-cache-dir -U pip setuptools && rm -rf /root/.cache/pip
 COPY ./requirements.txt /tmp/
-RUN apk add --update --no-cache \
-    gcc \
-    musl-dev \
-    openssl-dev \
-    py-pip \
-    python2-dev \
-  && pip install --no-cache-dir -r /tmp/requirements.txt \
-  && apk del \
-    gcc \
-    musl-dev \
-    openssl-dev \
-    py-pip \
-    python2-dev
+RUN pip install --no-cache-dir -r /tmp/requirements.txt && rm -rf /root/.cache/pip
 
 WORKDIR /ansible-galaxy/roles
 RUN ansible-galaxy install --roles-path . nickhammond.logrotate
