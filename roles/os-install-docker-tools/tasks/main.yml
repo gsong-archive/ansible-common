@@ -1,10 +1,10 @@
 # Install docker-engine and docker-compose
 # Add users to docker group
 # vars:
-#   - docker_apt_key_id
-#   - docker_apt_key_url
-#   - docker_repo
-#   - docker_tools_deps_pkgs: apt packages that Docker needs
+#   - docker_apt_key_id?
+#   - docker_apt_key_url?
+#   - docker_repo?
+#   - docker_tools_deps_pkgs?: apt packages that Docker needs
 ---
 - name: install package dependencies
   package:
@@ -17,7 +17,7 @@
 - name: add docker apt key
   apt_key:
     url: "{{ docker_apt_key_url }}"
-    id: "{{ docker_apt_key_id }}"
+    state: present
 
 - name: add docker repo
   apt_repository:

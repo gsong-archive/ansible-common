@@ -1,13 +1,7 @@
 # Safe upgrade OS pacakge
 # vars:
-#   - cache_valid_time
+#   - cache_valid_time?
 ---
-# See https://github.com/ansible/ansible/issues/18987
-- name: install aptitude (workaround)
-  package:
-    name: aptitude
-    state: latest
-
 - name: safe-upgrade OS packages
   apt:
     upgrade: safe

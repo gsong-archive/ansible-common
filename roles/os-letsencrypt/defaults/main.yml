@@ -1,9 +1,14 @@
 ---
-cache_valid_time: 3600
 certbot_flags:
+certbot_deps_pkgs:
+  - software-properties-common
+certbot_repos:
+  - deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ bionic universe
+  - deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ bionic-updates universe
+  - deb [arch=amd64] http://security.ubuntu.com/ubuntu/ bionic-security universe
+  - ppa:certbot/certbot
 
 letsencrypt_root: /etc/letsencrypt
-letsencrypt_config_dir: "{{ letsencrypt_root }}/config"
 letsencrypt_cron_hour: "{{ 11 | random }}"
 letsencrypt_cron_hours: "{{ letsencrypt_cron_hour }},{{ letsencrypt_cron_hour | int + 12 }}"
 letsencrypt_cron_minute: "{{ 59 | random }}"

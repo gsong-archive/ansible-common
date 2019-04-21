@@ -1,11 +1,11 @@
 # Add nginx available sites configurations
 # vars:
-#   - create_nginx_sites_available_path
-#   - host_app_root
+#   - create_nginx_sites_available_path?
+#   - host_app_root?
 #   - hostnames
-#   - nginx_document_root
-#   - nginx_site_template
-#   - nginx_sites_available_path
+#   - nginx_document_root?
+#   - nginx_site_template?
+#   - nginx_sites_available_path?
 ---
 - name: create working directory
   file:

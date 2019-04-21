@@ -1,46 +1,49 @@
 # Install letsencrypt SSL cert
 # vars:
-#   - cache_valid_time
-#   - certbot_flags
-#   - docker_compose
-#   - host_app_root
+#   - certbot_deps_pkgs?
+#   - certbot_flags?
+#   - certbot_repos?
+#   - docker_compose?
+#   - host_app_root?
 #   - hostnames
-#   - letsencrypt_config_dir
-#   - letsencrypt_cron_hours
-#   - letsencrypt_cron_minute
+#   - letsencrypt_cron_hours?
+#   - letsencrypt_cron_minute?
 #   - letsencrypt_email
-#   - letsencrypt_root
-#   - web_service_name
+#   - letsencrypt_root?
+#   - web_service_name?
 ---
-- name: install letsencrypt CLI
+- name: install package dependencies
   package:
-    name: letsencrypt
+    name: "{{ certbot_deps_pkgs }}"
     state: latest
 
-- name: create directory {{ letsencrypt_config_dir }}
-  file:
-    path: "{{ letsencrypt_config_dir }}"
-    state: directory
+- name: add certbot repos
+  apt_repository:
+    repo: "{{ item }}"
+  loop: "{{ certbot_repos }}"
+
+- name: install certbot CLI
+  package:
+    name: certbot
+    state: latest
 
 - name: create the configuration file
   template:
     src: cli.ini.j2
-    dest: "{{ letsencrypt_config_dir }}/{{ item }}.ini"
-  with_items: "{{ hostnames }}"
+    dest: "{{ letsencrypt_root }}/cli.ini"
+  loop: "{{ hostnames }}"
 
 - name: get the certificates
-  command: >
-    letsencrypt certonly -c {{ letsencrypt_config_dir }}/{{ item }}.ini
-    {{ certbot_flags }}
+  command: letsencrypt certonly {{ certbot_flags }}
   args:
     creates: "{{ letsencrypt_root }}/live/{{ item }}"
-  with_items: "{{ hostnames }}"
+  loop: "{{ hostnames }}"
 
 - name: install autorenew cron job
   cron:
     name: letsencrypt renew
     job: >
-      letsencrypt renew --agree-tos >/var/tmp/letsencrypt.txt 2>&1
+      certbot renew --agree-tos >/var/tmp/letsencrypt.txt 2>&1
       && cd {{ host_app_root }}
       && {{ docker_compose }} restart {{ web_service_name }} >>/var/tmp/letsencrypt.txt 2>&1
     hour: "{{ letsencrypt_cron_hours }}"

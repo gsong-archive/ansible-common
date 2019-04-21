@@ -1,5 +1,5 @@
 ---
 ssh_pub_key: ~/.ssh/id_rsa.pub
-linode_plan: 1  # Linode 1024
-linode_datacenter: 3  # Fremont
-linode_distro: 146  # Ubuntu 16.04 LTS
+linode_region: us-west
+linode_type: g6-nanode-1
+linode_image: linode/ubuntu18.04

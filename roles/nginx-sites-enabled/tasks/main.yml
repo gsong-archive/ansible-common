@@ -14,4 +14,4 @@
     src: "../sites-available/{{ item }}.conf"
     dest: "{{ nginx_sites_enabled_path }}/{{ item }}.conf"
     state: link
-  with_items: "{{ hostnames }}"
+  loop: "{{ hostnames }}"

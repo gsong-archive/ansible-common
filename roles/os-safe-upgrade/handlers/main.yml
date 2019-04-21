@@ -12,8 +12,8 @@
     seconds: 5
 
 - name: wait for server to start
-  local_action:
-    module: wait_for
+  wait_for:
     host: "{{ ansible_default_ipv4.address }}"
     port: 22
     state: started
+  delegate_to: localhost

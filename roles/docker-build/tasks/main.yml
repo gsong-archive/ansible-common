@@ -1,14 +1,9 @@
 # Build Docker images
 # vars:
-#   - docker_compose
-#   - host_app_root
+#   - docker_compose?
+#   - host_app_root?
 ---
-- name: build base image
-  command: "{{ docker_compose}} -f docker-compose.base.yml build --pull"
-  args:
-    chdir: "{{ host_app_root }}"
-
 - name: build Docker images
-  command: "{{ docker_compose}} build"
+  command: "{{ docker_compose}} build --parallel"
   args:
     chdir: "{{ host_app_root }}"

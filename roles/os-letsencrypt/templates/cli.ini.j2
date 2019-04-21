@@ -1,6 +1,6 @@
 # {{ ansible_managed }}
 
-# All flags used by the client can be configured here. Run `letsencrypt` with
+# All flags used by the client can be configured here. Run `certbot` with
 # "--help" to learn more about the available options.
 
 # Use a 4096 bit RSA key instead of 2048
@@ -13,9 +13,6 @@ email = {{ letsencrypt_email }}
 # domains.
 domains = {{ item }}
 
-# Uncomment to use a text interface instead of ncurses
-text = True
-
 # Uncomment to use the standalone authenticator on port 443
 # authenticator = standalone
 # standalone-supported-challenges = tls-sni-01
@@ -26,3 +23,7 @@ authenticator = webroot
 webroot-path = {{ letsencrypt_root }}
 
 agree-tos = True
+
+# Because we are using logrotate for greater flexibility, disable the
+# internal certbot logrotation.
+max-log-backups = 0

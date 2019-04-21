@@ -1,4 +1,7 @@
 ---
 app_create_env_force: yes
 app_env_template: env.j2
+compose_files:
+  - docker-compose.yml
+  - docker-compose.deploy.yml
 postgres_user: postgres
