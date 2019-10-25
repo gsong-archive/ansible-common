@@ -1,9 +1,13 @@
 FROM python:3
 ENV PYTHONUNBUFFERED 1
 
+LABEL Name="Ansible runner"
+LABEL Version="1.0"
+
 RUN apt-get update && apt-get install --no-install-recommends -y \
   bash-completion \
   keychain \
+  && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 RUN echo 'source /usr/share/bash-completion/bash_completion' >> /etc/bash.bashrc
 
