@@ -5,13 +5,13 @@
 #    pip-compile
 #
 ansible==2.9.6
-certifi==2019.11.28       # via requests
+certifi==2020.4.5.1       # via requests
 cffi==1.14.0              # via cryptography
 chardet==3.0.4            # via requests
-cryptography==2.8         # via ansible
+cryptography==2.9         # via ansible
 future==0.18.2            # via linode-api4
 idna==2.9                 # via requests
-jinja2==2.11.1            # via ansible
+jinja2==2.11.2            # via ansible
 linode-api4==2.3.3
 markupsafe==1.1.1         # via jinja2
 pycparser==2.20           # via cffi
