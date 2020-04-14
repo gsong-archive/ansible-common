@@ -1,4 +1,5 @@
 FROM python:3
+ENV ANSIBLE_PYTHON_INTERPRETER /usr/local/bin/python
 ENV PYTHONUNBUFFERED 1
 
 LABEL Name="Ansible runner"
