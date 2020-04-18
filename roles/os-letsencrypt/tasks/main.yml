@@ -34,7 +34,7 @@
   loop: "{{ hostnames }}"
 
 - name: get the certificates
-  command: certbot certonly {{ certbot_flags }}
+  command: certbot certonly {{ certbot_flags }} -d {{ item }}
   args:
     creates: "{{ letsencrypt_root }}/live/{{ item }}"
   loop: "{{ hostnames }}"
