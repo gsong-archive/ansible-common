@@ -4,7 +4,7 @@
 #
 #    pip-compile
 #
-ansible==2.9.6
+ansible==2.9.7            # via -r requirements.in
 certifi==2020.4.5.1       # via requests
 cffi==1.14.0              # via cryptography
 chardet==3.0.4            # via requests
@@ -12,10 +12,10 @@ cryptography==2.9         # via ansible
 future==0.18.2            # via linode-api4
 idna==2.9                 # via requests
 jinja2==2.11.2            # via ansible
-linode-api4==2.3.3
+linode-api4==2.3.3        # via -r requirements.in
 markupsafe==1.1.1         # via jinja2
 pycparser==2.20           # via cffi
 pyyaml==5.3.1             # via ansible
 requests==2.23.0          # via linode-api4
 six==1.14.0               # via cryptography
-urllib3==1.25.8           # via requests
+urllib3==1.25.9           # via requests
