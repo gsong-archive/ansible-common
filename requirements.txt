@@ -4,20 +4,20 @@
 #
 #    pip-compile
 #
-ansible-base==2.10.3      # via ansible
-ansible==2.10.3           # via -r requirements.in
-certifi==2020.11.8        # via requests
-cffi==1.14.3              # via cryptography
-chardet==3.0.4            # via requests
-cryptography==3.2.1       # via ansible-base
+ansible-base==2.10.4      # via ansible
+ansible==2.10.5           # via -r requirements.in
+certifi==2020.12.5        # via requests
+cffi==1.14.4              # via cryptography
+chardet==4.0.0            # via requests
+cryptography==3.3.1       # via ansible-base
 idna==2.10                # via requests
 jinja2==2.11.2            # via ansible-base
 linode-api4==3.0.2        # via -r requirements.in
 markupsafe==1.1.1         # via jinja2
-packaging==20.4           # via ansible-base
+packaging==20.8           # via ansible-base
 pycparser==2.20           # via cffi
 pyparsing==2.4.7          # via packaging
 pyyaml==5.3.1             # via ansible-base
-requests==2.24.0          # via linode-api4
-six==1.15.0               # via cryptography, packaging
-urllib3==1.25.11          # via requests
+requests==2.25.1          # via linode-api4
+six==1.15.0               # via cryptography
+urllib3==1.26.2           # via requests
