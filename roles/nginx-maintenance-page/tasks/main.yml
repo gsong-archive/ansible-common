@@ -10,5 +10,5 @@
 
 - name: make configuration files
   template:
-    src: maintenance.html.j2
+    src: "{{ nginx_maintenance_template }}"
     dest: "{{ nginx_maintenance_page_path }}/maintenance.html"

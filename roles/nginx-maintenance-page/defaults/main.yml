@@ -1,3 +1,4 @@
 ---
 host_app_root: /app
 nginx_maintenance_page_path: "{{ host_app_root }}/.data/nginx-maint/public"
+nginx_maintenance_template: maintenance.html.j2
