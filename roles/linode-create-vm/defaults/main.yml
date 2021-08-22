@@ -2,4 +2,4 @@
 ssh_pub_key: ~/.ssh/id_rsa.pub
 linode_region: us-west
 linode_type: g6-nanode-1
-linode_image: linode/ubuntu18.04
+linode_image: linode/ubuntu20.04
