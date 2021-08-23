@@ -16,6 +16,8 @@ RUN pip install --no-cache-dir -U pip setuptools && rm -rf /root/.cache/pip
 COPY ./requirements.txt /tmp/
 RUN pip install --no-cache-dir -r /tmp/requirements.txt && rm -rf /root/.cache/pip
 
+RUN ansible-galaxy collection install community.general
+
 WORKDIR /ansible-galaxy/roles
 RUN ansible-galaxy install --roles-path . nickhammond.logrotate
 

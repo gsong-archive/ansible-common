@@ -1,12 +1,5 @@
 ---
 certbot_flags:
-certbot_deps_pkgs:
-  - software-properties-common
-certbot_repos:
-  - deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ bionic universe
-  - deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ bionic-updates universe
-  - deb [arch=amd64] http://security.ubuntu.com/ubuntu/ bionic-security universe
-  - ppa:certbot/certbot
 
 letsencrypt_root: /etc/letsencrypt
 letsencrypt_cron_hour: "{{ 11 | random }}"

@@ -25,7 +25,10 @@
 
 - name: install docker-ce
   package:
-    name: docker-ce
+    name:
+      - containerd.io
+      - docker-ce
+      - docker-ce-cli
     state: latest
 
 - include_tasks: config.yml
@@ -37,6 +40,10 @@
     state: started
 
 - name: install docker-compose
-  shell: curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  shell: curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
   args:
     warn: false
+
+- file:
+    path: /usr/local/bin/docker-compose
+    mode: +x

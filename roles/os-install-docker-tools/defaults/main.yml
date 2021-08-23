@@ -1,12 +1,11 @@
 ---
 docker_apt_key_id: 0EBFCD88
 docker_apt_key_url: https://download.docker.com/linux/ubuntu/gpg
-docker_repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+docker_repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
 docker_tools_deps_pkgs:
   - apt-transport-https
   - ca-certificates
   - curl
   - dmsetup
-  - gnupg-agent
-  - python3-pip
-  - software-properties-common
+  - gnupg
+  - lsb-release

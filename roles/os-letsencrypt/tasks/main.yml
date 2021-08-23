@@ -1,8 +1,6 @@
 # Install letsencrypt SSL cert
 # vars:
-#   - certbot_deps_pkgs?
 #   - certbot_flags?
-#   - certbot_repos?
 #   - docker_compose?
 #   - host_app_root?
 #   - hostnames
@@ -12,20 +10,19 @@
 #   - letsencrypt_root?
 #   - web_service_name?
 ---
-- name: install package dependencies
-  package:
-    name: "{{ certbot_deps_pkgs }}"
-    state: latest
-
-- name: add certbot repos
-  apt_repository:
-    repo: "{{ item }}"
-  loop: "{{ certbot_repos }}"
+- command: snap install core
+- command: snap refresh core
 
 - name: install certbot CLI
-  package:
+  community.general.snap:
     name: certbot
-    state: latest
+    classic: yes
+
+- name: symlink certbot
+  file:
+    src: /snap/bin/certbot
+    dest: /usr/bin/certbot
+    state: link
 
 - name: create the configuration file
   template:
