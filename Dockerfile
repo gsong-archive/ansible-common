@@ -2,8 +2,8 @@ FROM python:3
 ENV ANSIBLE_PYTHON_INTERPRETER /usr/local/bin/python
 ENV PYTHONUNBUFFERED 1
 
-LABEL Name="Ansible runner"
-LABEL Version="1.0"
+LABEL name="Ansible runner"
+LABEL version="1.0"
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
   bash-completion \
